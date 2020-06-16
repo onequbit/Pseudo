@@ -133,24 +133,37 @@ namespace Library
             return output; 
         }
 
-        public static bool ElevatedContext()
-        {
-            bool isElevated;
-            using (WindowsIdentity identity = WindowsIdentity.GetCurrent())
-            {
-                WindowsPrincipal principal = new WindowsPrincipal(identity);
-                isElevated = principal.IsInRole(WindowsBuiltInRole.Administrator);
-            }
-            return isElevated;
-        }
+        // public static bool ElevatedContext()
+        // {
+        //     bool isElevated;
+        //     using (WindowsIdentity identity = WindowsIdentity.GetCurrent())
+        //     {
+        //         WindowsPrincipal principal = new WindowsPrincipal(identity);
+        //         isElevated = principal.IsInRole(WindowsBuiltInRole.Administrator);
+        //     }
+        //     return isElevated;
+        // }
 
-        public static void EnsureElevatedContext()
-        {
-            if (AdminProcess.ElevatedContext()) return;            
-            var elevated = new AdminProcess(Environment.CommandLine);
-            elevated.Start();
-            elevated.WaitForExit();
-            Process.GetCurrentProcess().Kill();
-        }
+        // public static void EnsureElevatedContext()
+        // {
+        //     if (AdminProcess.ElevatedContext()) return;            
+        //     else
+        //     {
+        //         new AdminProcess(Environment.CommandLine).Start();                
+        //         Process.GetCurrentProcess().Kill();
+        //     }                
+        // }
+
+        // public static void EnsureElevatedContext(string command, Action<AdminProcess, string> doAsAdmin)
+        // {
+        //     if (AdminProcess.ElevatedContext()) return;
+        //     using (var elevated = new AdminProcess(Environment.CommandLine))
+        //     {
+        //         elevated.Start();
+        //         elevated.WaitForExit();
+        //         doAsAdmin(elevated, command);
+        //     }
+        //     Process.GetCurrentProcess().Kill();
+        // }
     }
 }

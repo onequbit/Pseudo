@@ -16,18 +16,11 @@ namespace App
         [STAThread] // required for Windows Forms
         public static void Main(string[] args)
         {
+            if (args.Length == 0) return;
             try
-            {
-                if (args.Length == 0) return;
-                new ConsoleAttached();
-                AdminProcess.EnsureElevatedContext();                
-      
-                (string cmd, string[] cmdArgs) = args.Pop();
-                string cmdLine = cmdArgs.Join(" ");                
-                
-                string output = new AdminProcess(cmdLine).GetOutput();
-                Console.WriteLine(output);                
-                SendKeys.SendWait("{Enter}");           
+            {                
+                string output = new AdminProcess(args.Join(" ")).GetOutput();                
+                Console.WriteLine(output);                           
             }
             catch (Exception ex)
             {                
