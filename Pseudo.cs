@@ -19,7 +19,7 @@ namespace App
             if (args.Length == 0) return;
             try
             {                
-                string output = new AdminProcess(args.Join(" ")).GetOutput();                
+                string output = new AdminProcess(args.Join(" ")).GetOutput();                                
                 Console.WriteLine(output);                           
             }
             catch (Exception ex)
