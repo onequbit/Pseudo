@@ -9,8 +9,7 @@ using System.Windows.Forms;
 
 
 namespace App
-{
-    
+{    
     public class Program
     {
         [STAThread] // required for Windows Forms
